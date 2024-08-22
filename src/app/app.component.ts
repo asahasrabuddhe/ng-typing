@@ -13,9 +13,13 @@ import {NgClass, NgForOf, NgIf} from "@angular/common";
 export class AppComponent {
   paragraph: string = faker.lorem.paragraph();
   enteredText: string = '';
+  mistakes: number = 0;
 
   onInput(event: Event) {
     const target = event.target as HTMLInputElement;
     this.enteredText = target.value;
+    if (this.enteredText.length > 0 && this.enteredText[this.enteredText.length-1] !== this.paragraph[this.enteredText.length-1]) {
+      this.mistakes++
+    }
   }
 }
